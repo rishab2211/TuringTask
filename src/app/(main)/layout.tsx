@@ -1,3 +1,4 @@
+import Infobar from "@/components/Infobar";
 import MenuOptions from "@/components/sidebar/main";
 import { ReactNode } from "react";
 
@@ -7,7 +8,9 @@ const Layout = (props: Props) => {
   return (
     <div className=" flex overflow-hidden h-screen ">
       <MenuOptions />
-      <div className=" w-full  ">{props.children}</div>
+      <div className=" w-full ">
+        <Infobar/>
+        {props.children}</div>
     </div>
   );
 };

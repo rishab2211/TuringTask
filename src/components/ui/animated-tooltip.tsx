@@ -46,7 +46,7 @@ export const AnimatedTooltip = ({
       {items.map((item, idx) => (
         <Link href={item.href} key={idx}>
           <div
-            className=" mt-5 p-2.5 rounded-lg  relative group "
+            className=" mt-2 p-2.5 rounded-lg  relative group "
             key={item.name}
             onMouseEnter={() => setHoveredIndex(item.id)}
             onMouseLeave={() => setHoveredIndex(null)}
@@ -71,7 +71,7 @@ export const AnimatedTooltip = ({
                     rotate: rotate,
                     whiteSpace: "nowrap",
                   }}
-                  className="absolute -top-12 -left-1/2 translate-x-1/2 flex text-xs  flex-col items-center justify-center rounded-md bg-white z-50 px-4 py-2"
+                  className="absolute border-2 shadow-xl -top-12 -left-1/2 translate-x-1/2 flex text-xs  flex-col items-center justify-center rounded-md bg-white z-50 px-4 py-2"
                 >
                   <div className="absolute inset-x-10 z-30 w-[30%] -bottom-px bg-gradient-to-r from-transparent shadow-2xl via-emerald-600 to-transparent h-px " />
                   <div className="absolute left-10 w-[50%] z-30 -bottom-px bg-gradient-to-r from-transparent via-blue-600 to-transparent h-px " />
