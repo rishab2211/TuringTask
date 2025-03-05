@@ -112,10 +112,11 @@ export default function Home() {
                 translateZ="60"
                 className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
               >
-               Be more productive with the automation.
+                Be more productive with the automation.
                 <ul className="my-4 flex flex-col gap-2">
                   <li className="flex items-center gap-2">
-                    <CheckIcon />99 automations
+                    <CheckIcon />
+                    99 automations
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckIcon />
@@ -158,10 +159,12 @@ export default function Home() {
                 translateZ="60"
                 className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
               >
-                Make TaskTuring your go to automation tool and enhance your productivity to the fullest.
+                Make TaskTuring your go to automation tool and enhance your
+                productivity to the fullest.
                 <ul className="my-4 flex flex-col gap-2">
                   <li className="flex items-center gap-2">
-                    <CheckIcon />Unlimited Free automations
+                    <CheckIcon />
+                    Unlimited Free automations
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckIcon />

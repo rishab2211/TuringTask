@@ -1,13 +1,21 @@
 import { MenuIcon, WorkflowIcon } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 type Props = {};
 const Navbar = async (prop: Props) => {
   return (
     <header className="fixed right-0 left-0 top-0 px-4 py-2 backdrop-blur-lg z-[100] flex items-center border-b-[1px] border-neutral-900 justify-between ">
-      <aside className=" flex items-center gap-[2px] ">
-      <WorkflowIcon />
-        <p className=" text-2xl lg:text-3xl font-bold hidden md:block ">TuringTask</p>
+      <aside className=" flex items-center gap-[4px] ">
+        <Image
+          width={25}
+          height={25}
+          src={"/workflow.png"}
+          alt="Turingtask icon"
+        />
+        <p className=" text-2xl lg:text-3xl font-bold hidden md:block ">
+          TuringTask
+        </p>
       </aside>
       <nav className="absolute left-[50%] top-[50%] transform translate-x-[-50%] translate-y-[-50%] hidden md:block ">
         <ul className="flex items-center gap-4 list-none">
