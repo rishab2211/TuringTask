@@ -9,6 +9,8 @@ import {
   useSpring,
 } from "framer-motion";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import clsx from "clsx";
 
 export const AnimatedTooltip = ({
   items,
@@ -20,6 +22,7 @@ export const AnimatedTooltip = ({
     href: string;
   }[];
 }) => {
+  const pathname = usePathname();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const springConfig = { stiffness: 100, damping: 5 };
   const x = useMotionValue(0); // going to set this value on mouse move
@@ -42,48 +45,46 @@ export const AnimatedTooltip = ({
     <>
       {items.map((item, idx) => (
         <Link href={item.href} key={idx}>
-        <div
-          className="mt-8 px-3  relative group"
-          key={item.name}
-          onMouseEnter={() => setHoveredIndex(item.id)}
-          onMouseLeave={() => setHoveredIndex(null)}
-        >
-          <AnimatePresence mode="popLayout">
-            {hoveredIndex === item.id && (
-              <motion.div
-                initial={{ opacity: 0, y: 20, scale: 0.6 }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                  scale: 1,
-                  transition: {
-                    type: "spring",
-                    stiffness: 260,
-                    damping: 10,
-                  },
-                }}
-                exit={{ opacity: 0, x: 20, scale: 0.6 }}
-                style={{
-                  translateX: translateX,
-                  rotate: rotate,
-                  whiteSpace: "nowrap",
-                }}
-                className="absolute -top-12 -left-1/2 translate-x-1/2 flex text-xs  flex-col items-center justify-center rounded-md bg-white z-50 px-4 py-2"
-              >
-                <div className="absolute inset-x-10 z-30 w-[30%] -bottom-px bg-gradient-to-r from-transparent shadow-2xl via-emerald-600 to-transparent h-px " />
-                <div className="absolute left-10 w-[50%] z-30 -bottom-px bg-gradient-to-r from-transparent via-blue-600 to-transparent h-px " />
-                <div className="font-bold text-black relative z-30 text-base">
-                  {item.name}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+          <div
+            className=" mt-5 p-2.5 rounded-lg  relative group "
+            key={item.name}
+            onMouseEnter={() => setHoveredIndex(item.id)}
+            onMouseLeave={() => setHoveredIndex(null)}
+          >
+            <AnimatePresence mode="popLayout">
+              {hoveredIndex === item.id && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20, scale: 0.6 }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    transition: {
+                      type: "spring",
+                      stiffness: 260,
+                      damping: 10,
+                    },
+                  }}
+                  exit={{ opacity: 0, x: 20, scale: 0.6 }}
+                  style={{
+                    translateX: translateX,
+                    rotate: rotate,
+                    whiteSpace: "nowrap",
+                  }}
+                  className="absolute -top-12 -left-1/2 translate-x-1/2 flex text-xs  flex-col items-center justify-center rounded-md bg-white z-50 px-4 py-2"
+                >
+                  <div className="absolute inset-x-10 z-30 w-[30%] -bottom-px bg-gradient-to-r from-transparent shadow-2xl via-emerald-600 to-transparent h-px " />
+                  <div className="absolute left-10 w-[50%] z-30 -bottom-px bg-gradient-to-r from-transparent via-blue-600 to-transparent h-px " />
+                  <div className="font-bold text-black relative z-30 text-base">
+                    {item.name}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
 
-           
-          {<item.Component  />}
-          
-        </div>
-        </Link> 
+            {<item.Component selected={pathname == item.href ? true : false} />}
+          </div>
+        </Link>
       ))}
     </>
   );
