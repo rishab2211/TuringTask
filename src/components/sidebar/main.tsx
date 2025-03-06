@@ -13,19 +13,11 @@ import { ModeToggle } from "../ui/mode-toggle";
 type Props = {};
 
 const MenuOptions = (props: Props) => {
-
   return (
     <nav className="dark:bg-black/80 h-screen flex flex-col items-center gap-10 py-6 px-2 ">
       <div className=" flex items-center justify-center flex-col gaap-8 ">
         <Link href={"/"}>
-      
-          <Image
-          src={"/workflow.png"}
-          alt="icon"
-            
-            width={32}
-            height={32}
-          />
+          <Image src={"/workflow.png"} alt="icon" width={32} height={32} />
         </Link>
         <AnimatedTooltip items={menuOptions} />
         <br />
@@ -47,7 +39,6 @@ const MenuOptions = (props: Props) => {
             <div className="border-l-2 border-muted-foreground/50 h-6 absolute left-1/2 transform translate-x-[-50%] -bottom-[30px]" />
           </div>
         </div>
-        <ModeToggle />
       </div>
     </nav>
   );

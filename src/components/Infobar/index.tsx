@@ -7,10 +7,12 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "../ui/tooltip";
+import { ModeToggle } from "../ui/mode-toggle";
 
 const Infobar = () => {
   return (
     <div className=" flex flex-row justify-end gap-6 items-center p-4 w-full dark:bg-black ">
+      <ModeToggle/>
       <span className="flex items-center bg-muted px-4 rounded-full">
         <Search />
         <Input

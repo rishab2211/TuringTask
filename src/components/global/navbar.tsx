@@ -9,7 +9,7 @@ const Navbar = async (prop: Props) => {
       <aside className=" flex items-center gap-[4px] ">
         <Image
           width={25}
-t          height={25}
+          height={25}
           src={"/workflow.png"}
           alt="Turingtask icon"
         />

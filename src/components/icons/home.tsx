@@ -25,7 +25,7 @@ const Home = ({ selected }: Props) => {
         d="M9 16C9 14.8954 9.89543 14 11 14H13C14.1046 14 15 14.8954 15 16V22H9V16Z"
         className={clsx(
           'dark:group-hover:fill-[#9F54FF] transition-all dark:fill-[#C0BFC4] fill-[#5B5966] group-hover:fill-[#BD8AFF] ',
-          { 'dark:!fill-[#9F54FF] fill-[#BD8AFF]': selected }
+          { 'dark:!fill-[#9F54FF] fill-[#9F54FF]': selected }
         )}
       />
     </svg>
