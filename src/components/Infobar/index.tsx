@@ -8,6 +8,7 @@ import {
   TooltipTrigger,
 } from "../ui/tooltip";
 import { ModeToggle } from "../ui/mode-toggle";
+import { UserButton } from "@clerk/nextjs";
 
 const Infobar = () => {
   return (
@@ -41,6 +42,7 @@ const Infobar = () => {
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>
+      <UserButton/>
     </div>
   );
 };
