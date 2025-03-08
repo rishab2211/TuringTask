@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -23,8 +22,7 @@ import { div } from "framer-motion/client";
 function ProfileForm() {
   const [isLoading, setIsLoading] = useState(false);
 
-  // 1. Define your form.
-  const form = useForm<z.infer<typeof EditUserProfileSchema>>({
+  const form = useForm({
     resolver: zodResolver(EditUserProfileSchema),
     defaultValues: {
       email: "",
@@ -32,50 +30,64 @@ function ProfileForm() {
     },
   });
 
-  // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof EditUserProfileSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+    setIsLoading(true);
     console.log(values);
+
+    // Simulating API Call
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
   }
 
   return (
-    <div className="mt-5">
+    <div className="mt-4">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          {/* Email Field */}
           <FormField
-            disabled={isLoading}
             control={form.control}
             name="email"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input placeholder="example@gmail.com" {...field} />
+                  <Input
+                    type="email"
+                    placeholder="Enter your email"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
 
+          {/* Username Field */}
           <FormField
-            disabled={isLoading}
             control={form.control}
             name="name"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Username</FormLabel>
                 <FormControl>
-                  <Input placeholder="Rishab raj" {...field} />
+                  <Input
+                    type="text"
+                    placeholder="Enter your username"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <Button type="submit">
+
+          {/* Submit Button */}
+          <Button type="submit" disabled={isLoading}>
             {isLoading ? (
               <>
-                <Loader2Icon className="animate-spin" /> <span>Saving</span>
+                <Loader2Icon className="animate-spin w-4 h-4 mr-2" />
+                Saving...
               </>
             ) : (
               "Save"

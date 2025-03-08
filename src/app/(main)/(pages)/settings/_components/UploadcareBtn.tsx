@@ -1,39 +1,46 @@
-'use client'
-import { FileUploaderRegular } from '@uploadcare/react-uploader/next';
-import '@uploadcare/react-uploader/core.css';
-import { useState } from 'react';
+"use client";
 
-type UploadProps = {
-  onUpload : (url : string)=>void;
-}
+import { FileUploaderRegular } from "@uploadcare/react-uploader/next";
+import "@uploadcare/react-uploader/core.css";
+import { useEffect, useState } from "react";
 
-const UploadcareBtn = ({onUpload} : UploadProps) => {
-  const [imageUrl,setImageUrl] = useState("");
-  
+type Props = {
+  onUpload: (value : string) => void;
+  // onRemove : any;
+};
 
-  const handleFileUpload = async (file : any)=>{
-    if(file && file.cdnUrl){
-      const fileUrl = file.cdnUrl;
-      setImageUrl(fileUrl);
-      onUpload(fileUrl);
+function UploadcareBtn({ onUpload }: Props) {
+  const [fileUuid, setFileUuid] = useState<string | null>(null);
+
+  const handleSuccess = (info: any) => {
+    // Extract the UUID from the info object
+    if (info && info.uuid) {
+      setFileUuid(info.uuid);
+    } else if (info && typeof info === "string") {
+      // Some versions might return just the UUID as a string
+      setFileUuid(info);
     }
+  };
 
-    const uploadFile = await prisma?.user.create({
-      where:{
-        
-      }
-    })
-  }
+  useEffect(() => {
+    if (fileUuid) {
+      onUpload(fileUuid);
+    }
+  }, [fileUuid, onUpload]);
+
+
   return (
     <div>
       <FileUploaderRegular
         sourceList="local, camera, facebook, gdrive"
-        cameraModes="photo, video"
-        classNameUploader="uc-light"
+        cameraModes="photo"
+        className="uc-light"
         pubkey={process.env.NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY as string}
+        onFileUploadSuccess={handleSuccess}
+        
       />
     </div>
   );
-};
+}
 
 export default UploadcareBtn;
