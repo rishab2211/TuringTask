@@ -17,7 +17,7 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { EditUserProfileSchema } from "@/lib/types";
 import { Loader2Icon } from "lucide-react";
-import { div } from "framer-motion/client";
+
 
 function ProfileForm() {
   const [isLoading, setIsLoading] = useState(false);

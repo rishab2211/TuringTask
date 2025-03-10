@@ -15,6 +15,12 @@ type Props = {
 
 const ProfilePicture = ({ userImage, onUpload, Uuid, onRemove }: Props) => {
 
+  useEffect(()=>{
+    if(userImage){
+      setIsLoading(false);
+    }
+  },[onUpload])
+
   const [isLoading, setIsLoading] = useState(false);
 
   return (
