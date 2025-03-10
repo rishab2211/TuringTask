@@ -37,6 +37,9 @@ function UploadcareBtn({ onUpload }: Props) {
         className="uc-light"
         pubkey={process.env.NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY as string}
         onFileUploadSuccess={handleSuccess}
+        imgOnly = {true}
+        multiple={false}
+        multipleMax={1}
         
       />
     </div>

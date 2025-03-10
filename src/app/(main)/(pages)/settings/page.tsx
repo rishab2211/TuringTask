@@ -17,11 +17,11 @@ const SettingsPage = async () => {
   const authUser = await currentUser();
   if (!authUser) return null;
 
-  const user = await db.user.findUnique({ where: { clerkId: authUser.id } });
+  const User = await db.user?.findUnique({ where: { clerkId: authUser.id } });
 
-  console.log(user?.profileImage);
+  console.log(User?.profileImage);
 
-  const Uuid = user?.profileImage;
+  const Uuid = User?.profileImage;
 
   const removeProfileImage = async (Uuid: string) => {
     "use server";
@@ -71,7 +71,7 @@ const SettingsPage = async () => {
         </div>
         <ProfilePicture
           onRemove={removeProfileImage}
-          userImage={user?.profileImage || ""}
+          userImage={User?.profileImage || ""}
           onUpload={uploadProfileImage}
           Uuid={Uuid || ""}
         />
