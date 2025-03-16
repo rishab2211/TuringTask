@@ -1,53 +1,43 @@
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
-  DrawerTrigger,
 } from "@/components/ui/drawer";
-import { Button } from "../ui/button";
 import { useModal } from "@/provider/modal-provider";
-import { Children, ReactNode } from "react";
+import { useRouter } from "next/navigation";
+import WorkflowForm from "../forms/workflow-form";
 
 type Props = {
   title: string;
   description: string;
-  children: ReactNode;
   defaultOpen?: boolean;
 };
 
-const CustomModal = ({ title, description, children, defaultOpen }: Props) => {
+const CustomModal = ({ title, description, defaultOpen }: Props) => {
   const { isOpen, setClose } = useModal();
+  const router = useRouter();
 
   const handleClose = () => {
     setClose();
   };
 
   return (
-    <Drawer open={isOpen} onClose={handleClose} >
-      <DrawerContent className="no-scrollbar">
+    <Drawer open={isOpen} onClose={handleClose}>
+      <DrawerContent>
         <DrawerHeader>
           <DrawerTitle className="text-center text-2xl">{title}</DrawerTitle>
-          <div className="text-center flex flex-col items-center gap-4 h-90 overflow-scroll">
+          <div className="text-center flex flex-col items-center gap-4 h-90 overflow-hidden">
             {description}
-            {children}
+            <WorkflowForm
+              onClose={handleClose}
+            />
           </div>
         </DrawerHeader>
-        <DrawerFooter className="flex flex-col gap-4 bg-background border-t-[1px] border-t-muted">
-          <Button
-            variant="default"
-            className="hover:bg-slate-800 border hover:text-white"
-            onClick={handleClose}
-          >
-            Cancel
-          </Button>
-        </DrawerFooter>
       </DrawerContent>
     </Drawer>
   );
 };
+
 
 export default CustomModal;

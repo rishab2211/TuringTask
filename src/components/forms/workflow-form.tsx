@@ -1,25 +1,17 @@
-import React from "react";
+"use client";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { WorkflowSchema } from "@/lib/types";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../ui/card";
+
+import { Card, CardContent } from "../ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form";
 import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 
-type Props = {
-  title?: string;
-  description?: string;
-};
 
-const WorkflowForm = ({ title, description }: Props) => {
+// Separate component for the form to prevent state updates during parent render
+const WorkflowForm = ({ onClose }: { onClose: () => void }) => {
   const form = useForm<z.infer<typeof WorkflowSchema>>({
     mode: "onChange",
     resolver: zodResolver(WorkflowSchema),
@@ -29,31 +21,22 @@ const WorkflowForm = ({ title, description }: Props) => {
     },
   });
 
-  const isLoading = form.formState.isLoading;
-  const router = useRouter();
+  const isLoading = form.formState.isSubmitting;
 
-  function onSubmit(values: z.infer<typeof WorkflowSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+  const onSubmit = (values: z.infer<typeof WorkflowSchema>) => {
     console.log(values);
-  }
+    // form submission logic here
+  };
 
   return (
-    <Card className="border-none h-full">
-      {title && description && (
-        <CardHeader>
-          <CardTitle>{title}</CardTitle>
-          <CardDescription>{description}</CardDescription>
-        </CardHeader>
-      )}
-      <CardContent className="w-full text-lg h-full">
+    <Card className="border-none h-full w-[80vw] lg:w-[50vw]">
+      <CardContent className="w-full text-lg">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
             className="flex flex-col gap-4"
           >
             <FormField
-              disabled={isLoading}
               control={form.control}
               name="title"
               render={({ field }) => (
@@ -66,18 +49,28 @@ const WorkflowForm = ({ title, description }: Props) => {
               )}
             />
             <FormField
-              disabled={isLoading}
               control={form.control}
               name="description"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>description</FormLabel>
+                  <FormLabel>Description</FormLabel>
                   <FormControl>
                     <Input {...field} placeholder="Description" />
                   </FormControl>
                 </FormItem>
               )}
             />
+            <Button type="submit" disabled={isLoading}>
+              Submit
+            </Button>
+            <Button
+              variant="default"
+              className="hover:bg-slate-800 w-full border hover:text-white"
+              onClick={onClose}
+              type="button"
+            >
+              Cancel
+            </Button>
           </form>
         </Form>
       </CardContent>

@@ -14,10 +14,8 @@ const WorkflowButton = () => {
       <CustomModal
         title="Create a workflow."
         description="Let's automate tasks using workflows."
-      >
-        <WorkflowForm/>
+      />
         
-      </CustomModal>
     );
   };
   return (
