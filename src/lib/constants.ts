@@ -106,23 +106,23 @@ export const menuOptions = [
 
 export const CONNECTIONS: Connection[] = [
   {
-    title: 'Google Drive',
+    title: 'Google drive',
     description: 'Connect your google drive to listen to folder changes',
-    image: '/googleDrive.png',
+    image: '/googleDrive.svg',
     connectionKey: 'googleNode',
     alwaysTrue: true,
   },
   {
     title: 'Discord',
     description: 'Connect your discord to send notification and messages',
-    image: '/discord.png',
+    image: '/discord.svg',
     connectionKey: 'discordNode',
     accessTokenKey: 'webhookURL',
   },
   {
     title: 'Notion',
     description: 'Create entries in your notion dashboard and automate tasks.',
-    image: '/notion.png',
+    image: '/notion.svg',
     connectionKey: 'notionNode',
     accessTokenKey: 'accessToken',
   },
@@ -130,7 +130,7 @@ export const CONNECTIONS: Connection[] = [
     title: 'Slack',
     description:
       'Use slack to send notifications to team members through your own custom bot.',
-    image: '/slack.png',
+    image: '/slack.svg',
     connectionKey: 'slackNode',
     accessTokenKey: 'slackAccessToken',
     slackSpecial: true,
