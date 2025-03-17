@@ -1,9 +1,16 @@
-import React from 'react'
+"use client";
 
-const Editor = () => {
-  return (
-    <div>Editor</div>
-  )
-}
+import { useRouter } from "next/navigation";
+import React, { useEffect } from "react";
 
-export default Editor
+const Page = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push("/workflows");
+  }, [router]);
+
+  return <div></div>;
+};
+
+export default Page;

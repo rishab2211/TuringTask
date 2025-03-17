@@ -1,14 +1,18 @@
-import EditorProvider from '@/provider/editor-provider'
-import React from 'react'
+import { ConnectionsProvider } from "@/provider/connections-provider";
+import EditorProvider from "@/provider/editor-provider";
 
-type Props = {}
+type Props = {};
 
 const Page = (props: Props) => {
   return (
-    <div className='h-full'>
-        <EditorProvider></EditorProvider>
+    <div className="h-full">
+      <EditorProvider>
+        <ConnectionsProvider>
+          <div></div>
+        </ConnectionsProvider>
+      </EditorProvider>
     </div>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;
