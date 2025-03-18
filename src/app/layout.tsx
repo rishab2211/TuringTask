@@ -10,6 +10,7 @@ import {
   UserButton,
 } from "@clerk/nextjs";
 import ModalProvider from "@/provider/modal-provider";
+import { Toaster } from "sonner";
 
 const dm_Sans = DM_Sans({
   variable: "--font-geist-sans",
@@ -42,6 +43,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <ModalProvider>{children}</ModalProvider>
+            <Toaster/>
           </ThemeProvider>
         </body>
       </html>

@@ -1,5 +1,6 @@
 import { ConnectionsProvider } from "@/provider/connections-provider";
 import EditorProvider from "@/provider/editor-provider";
+import EditorCanvas from "./_components/editor-canvas";
 
 type Props = {};
 
@@ -8,7 +9,7 @@ const Page = (props: Props) => {
     <div className="h-full">
       <EditorProvider>
         <ConnectionsProvider>
-          <div></div>
+          <EditorCanvas/>
         </ConnectionsProvider>
       </EditorProvider>
     </div>
