@@ -167,7 +167,7 @@
 
 import { EditorCanvasCardType, EditorNodeType } from "@/lib/types";
 import { useEditor } from "@/provider/editor-provider";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import EditorCanvasCardSingle from "./editor-canvas-card-single";
 import {
   ResizableHandle,
@@ -192,6 +192,8 @@ import { toast } from "sonner";
 import { v4 } from "uuid";
 import { EditorCanvasDefaultCardTypes } from "@/lib/constants";
 import { Loader2Icon } from "lucide-react";
+import FlowInstance from "./flow-instance";
+import EditorCanvasSidebar from "./editor-canvas-sidebar";
 
 type Props = {};
 
@@ -312,6 +314,10 @@ const EditorCanvas = (props: Props) => {
     });
   };
 
+  useEffect(() => {
+    dispatch({ type: "LOAD_DATA", payload: { edges, elements: nodes } });
+  }, [nodes, edges]);
+
   return (
     <ResizablePanelGroup direction="horizontal">
       <ResizablePanel defaultSize={70}>
@@ -346,7 +352,13 @@ const EditorCanvas = (props: Props) => {
       </ResizablePanel>
       <ResizableHandle />
       <ResizablePanel defaultSize={40} className="border-l relative sm:block">
-
+        {isWorkFlowLoading ? (
+          <Loader2Icon className="animate-spin" size={30} />
+        ) : (
+          <FlowInstance nodes={nodes} edges={edges}>
+            <EditorCanvasSidebar nodes={nodes} />
+          </FlowInstance>
+        )}
       </ResizablePanel>
     </ResizablePanelGroup>
   );
