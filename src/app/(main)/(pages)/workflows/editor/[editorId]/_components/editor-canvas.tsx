@@ -217,7 +217,7 @@ const EditorCanvas = (props: Props) => {
       Condition: EditorCanvasCardSingle,
       AI: EditorCanvasCardSingle,
       Slack: EditorCanvasCardSingle,
-      "Google Drive": EditorCanvasCardSingle,
+      "Google drive": EditorCanvasCardSingle,
       Notion: EditorCanvasCardSingle,
       Discord: EditorCanvasCardSingle,
       "Custom Webhook": EditorCanvasCardSingle,

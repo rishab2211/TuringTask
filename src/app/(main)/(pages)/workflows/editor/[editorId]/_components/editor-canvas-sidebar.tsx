@@ -33,6 +33,13 @@ const EditorCanvasSidebar = ({ nodes }: Props) => {
 
   const { nodeConnection } = useNodeConnections();
 
+  // useEffect(()=>{
+  //   console.log("Selected element : ",state.editor.selectedNode.data.title);
+  //   console.log(EditorCanvasDefaultCardTypes);
+
+    
+  // },[state.editor.selectedNode])
+
   return (
     <div className="text-white flex justify-center items-center">
       <Tabs
@@ -60,6 +67,7 @@ const EditorCanvasSidebar = ({ nodes }: Props) => {
                 draggable
                 className="cursor-grab "
                 onDragStart={(event) => {
+                  console.log("Dragging:", cardKey, "Type:", cardValue.type);
                   onDragStart(event, cardKey as EditorCanvasCardType["type"]);
                 }}
               >

@@ -139,6 +139,16 @@ export const CONNECTIONS: Connection[] = [
 
 
 export const EditorCanvasDefaultCardTypes = {
+  'Google drive': {
+    description:
+      'Connect with Google drive to trigger actions or to create files and folders.',
+    type: 'Trigger',
+  },
+  Trigger: {
+    description: 'An event that starts the workflow.',
+    type: 'Trigger',
+  },
+
   Email: { description: 'Send and email to a user', type: 'Action' },
   Condition: {
     description: 'Boolean operator that creates different conditions lanes.',
@@ -150,11 +160,6 @@ export const EditorCanvasDefaultCardTypes = {
     type: 'Action',
   },
   Slack: { description: 'Send a notification to slack', type: 'Action' },
-  'Google drive': {
-    description:
-      'Connect with Google drive to trigger actions or to create files and folders.',
-    type: 'Trigger',
-  },
   Notion: { description: 'Create entries directly in notion.', type: 'Action' },
   'Custom Webhook': {
     description:
@@ -169,10 +174,7 @@ export const EditorCanvasDefaultCardTypes = {
     description: 'Create a calendar invite.',
     type: 'Action',
   },
-  Trigger: {
-    description: 'An event that starts the workflow.',
-    type: 'Trigger',
-  },
+
   Action: {
     description: 'An event that happens after the workflow begins',
     type: 'Action',
@@ -181,4 +183,5 @@ export const EditorCanvasDefaultCardTypes = {
     description: 'Delay the next action step by using the wait timer.',
     type: 'Action',
   },
+
 }
