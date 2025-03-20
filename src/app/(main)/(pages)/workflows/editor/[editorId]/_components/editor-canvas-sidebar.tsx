@@ -7,7 +7,7 @@ import { useNodeConnections } from "@/provider/connections-provider";
 import { useEditor } from "@/provider/editor-provider";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
-import { EditorCanvasDefaultCardTypes } from "@/lib/constants";
+import { CONNECTIONS, EditorCanvasDefaultCardTypes } from "@/lib/constants";
 import {
   Card,
   CardDescription,
@@ -23,6 +23,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import RenderConnectionAccordian from "./render-connection-accordian";
 
 type Props = {
   nodes: EditorNodeType[];
@@ -32,13 +33,6 @@ const EditorCanvasSidebar = ({ nodes }: Props) => {
   const { state } = useEditor();
 
   const { nodeConnection } = useNodeConnections();
-
-  // useEffect(()=>{
-  //   console.log("Selected element : ",state.editor.selectedNode.data.title);
-  //   console.log(EditorCanvasDefaultCardTypes);
-
-    
-  // },[state.editor.selectedNode])
 
   return (
     <div className="text-white flex justify-center items-center">
@@ -67,7 +61,6 @@ const EditorCanvasSidebar = ({ nodes }: Props) => {
                 draggable
                 className="cursor-grab "
                 onDragStart={(event) => {
-                  console.log("Dragging:", cardKey, "Type:", cardValue.type);
                   onDragStart(event, cardKey as EditorCanvasCardType["type"]);
                 }}
               >
@@ -86,9 +79,15 @@ const EditorCanvasSidebar = ({ nodes }: Props) => {
 
           <Accordion type="multiple">
             <AccordionItem value="item-1">
-              <AccordionTrigger>Is it accessible?</AccordionTrigger>
+              <AccordionTrigger>Account</AccordionTrigger>
               <AccordionContent>
-                Yes. It adheres to the WAI-ARIA design pattern.
+                {CONNECTIONS.map((connection, idx) => (
+                  <RenderConnectionAccordian
+                    key={idx}
+                    state={state}
+                    connection={connection}
+                  />
+                ))}
               </AccordionContent>
             </AccordionItem>
           </Accordion>

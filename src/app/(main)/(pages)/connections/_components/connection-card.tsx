@@ -22,7 +22,7 @@ const ConnectionCard: React.FC<Props> = ({
 
 }) => {
   return (
-    <div className="border m-3  p-6 w-full sm:w-[400px]  lg:w-[475px] xl:w-[600px] rounded-md shadow-md flex flex-col items-center">
+    <div className="border m-3  p-6 w-max-[450px]  rounded-md shadow-md flex flex-col items-center">
       <Image src={icon as string} alt={title} width={40} height={40} />
       <h3 className="text-lg font-semibold">{title}</h3>
       <p className="text-sm text-muted-foreground">{description}</p>

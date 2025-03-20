@@ -350,7 +350,7 @@ const EditorCanvas = (props: Props) => {
           )}
         </div>
       </ResizablePanel>
-      <ResizableHandle />
+      <ResizableHandle withHandle/>
       <ResizablePanel defaultSize={40} className="border-l relative sm:block">
         {isWorkFlowLoading ? (
           <Loader2Icon className="animate-spin" size={30} />
