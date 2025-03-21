@@ -24,6 +24,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import RenderConnectionAccordian from "./render-connection-accordian";
+import RenderOutputAccordian from "./render-output-accordian";
 
 type Props = {
   nodes: EditorNodeType[];
@@ -46,8 +47,8 @@ const EditorCanvasSidebar = ({ nodes }: Props) => {
         </TabsList>
         <Separator />
         <TabsContent
-          value="actions"
-          className="p-2 overflow-scroll no-scrollbar"
+          value="actions" 
+          className="p-2 overflow-scroll no-scrollbar flex flex-col gap-2.5"
         >
           {Object.entries(EditorCanvasDefaultCardTypes)
             .filter(
@@ -88,6 +89,17 @@ const EditorCanvasSidebar = ({ nodes }: Props) => {
                     connection={connection}
                   />
                 ))}
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="Expected Output">
+              <AccordionTrigger>Action</AccordionTrigger>
+              <AccordionContent>
+                <RenderOutputAccordian
+                state={state}
+                nodeConnection={nodeConnection}
+                />
+             
               </AccordionContent>
             </AccordionItem>
           </Accordion>
