@@ -1,9 +1,13 @@
+// import { currentUser } from "@clerk/nextjs/server";
 import { MenuIcon, WorkflowIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 type Props = {};
 const Navbar = async (prop: Props) => {
+
+  const user = true;
+
   return (
     <header className="fixed right-0 left-0 top-0 px-4 py-2 backdrop-blur-lg z-[100] flex items-center border-b-[1px] border-neutral-900 justify-between ">
       <aside className=" flex items-center gap-[4px] ">
@@ -45,7 +49,7 @@ const Navbar = async (prop: Props) => {
 
           <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
             {/* TODO : Wire up user */}
-            {true ? "Dashboard" : "Get Started"}
+            {user ? "Dashboard" : "Get Started"}
           </span>
         </Link>
 

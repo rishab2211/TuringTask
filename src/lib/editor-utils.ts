@@ -5,6 +5,7 @@ import { EditorState } from "@/provider/editor-provider";
 import { getDiscordConnectionUrl } from "@/app/(main)/(pages)/connections/_actions/discord-connect";
 import { getNotionConnection, getNotionDatabase } from "@/app/(main)/(pages)/connections/_actions/notion_connect";
 import { getSlackConnection } from "@/app/(main)/(pages)/connections/_actions/slack_connect";
+import { Option } from "@/store";
 
 
 export const onDragStart = (event: any, nodeType: EditorCanvasCardType["type"]) => {
@@ -130,4 +131,12 @@ export const onConnection = async (
         }
     }
 
+}
+
+
+export const fetchBotSlackChannel=async (
+    token :string,
+    setSlackChannels : (slackChannels : Option[])=>void
+)=>{
+    await listBotChannels(token)?.then((channels)=>setSlackChannels(channels))
 }

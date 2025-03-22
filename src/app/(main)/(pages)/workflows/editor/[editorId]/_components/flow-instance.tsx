@@ -1,3 +1,4 @@
+"use client"
 import { Button } from "@/components/ui/button";
 import { useNodeConnections } from "@/provider/connections-provider";
 import { usePathname } from "next/navigation";

@@ -15,7 +15,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import EditorCanvasIconHelper from "./editor-canvas-card-icon-helper";
-import { onConnection, onDragStart } from "@/lib/editor-utils";
+import {
+  fetchBotSlackChannel,
+  onConnection,
+  onDragStart,
+} from "@/lib/editor-utils";
 import { useEffect, useState } from "react";
 import {
   Accordion,
@@ -35,13 +39,22 @@ const EditorCanvasSidebar = ({ nodes }: Props) => {
   const { state } = useEditor();
 
   const { nodeConnection } = useNodeConnections();
-  const {googleFile, setSlackChannels} = useTuringStore();
+  const { googleFile, setSlackChannels } = useTuringStore();
 
-  useEffect(()=>{
-    if(state){
-      onConnection(nodeConnection,googleFile,state)
+  useEffect(() => {
+    if (state) {
+      onConnection(nodeConnection, googleFile, state);
     }
-  },[state])
+  }, [state]);
+
+  useEffect(() => {
+    if (nodeConnection.slackNode.slackAccessToken) {
+      fetchBotSlackChannel(
+        nodeConnection.slackNode.slackAccessToken,
+        setSlackChannels
+      );
+    }
+  }, [nodeConnection]);
 
   return (
     <div className="text-white flex justify-center items-center">
@@ -55,7 +68,7 @@ const EditorCanvasSidebar = ({ nodes }: Props) => {
         </TabsList>
         <Separator />
         <TabsContent
-          value="actions" 
+          value="actions"
           className="p-2 overflow-scroll no-scrollbar flex flex-col gap-2.5"
         >
           {Object.entries(EditorCanvasDefaultCardTypes)
@@ -104,10 +117,9 @@ const EditorCanvasSidebar = ({ nodes }: Props) => {
               <AccordionTrigger>Action</AccordionTrigger>
               <AccordionContent className="flex flex-col items-center">
                 <RenderOutputAccordian
-                state={state}
-                nodeConnection={nodeConnection}
+                  state={state}
+                  nodeConnection={nodeConnection}
                 />
-             
               </AccordionContent>
             </AccordionItem>
           </Accordion>
