@@ -1,6 +1,7 @@
 "use server";
 
 import { db } from "@/lib/db";
+import { currentUser } from "@clerk/nextjs/server";
 
 export const onDiscordConnect = async (
   channel_id: string,
@@ -87,4 +88,25 @@ export const onDiscordConnect = async (
       }
     }
   }
+};
+
+export const getDiscordConnectionUrl = async () => {
+  const user = await currentUser();
+
+  if (user) {
+    const webhook = await db.discordWebhook.findFirst({
+      where: {
+        userId: user.id,
+      },
+      select: {
+        url: true,
+        name: true,
+        guildName: true,
+      },
+    });
+
+    return webhook;
+  }
+
+  
 };

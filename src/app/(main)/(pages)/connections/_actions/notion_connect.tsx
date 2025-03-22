@@ -1,6 +1,8 @@
 "use server";
 
 import { db } from "@/lib/db";
+import { currentUser } from "@clerk/nextjs/server";
+import { Client } from "@notionhq/client";
 
 export const onNotionConnect = async (
   access_token: string,
@@ -46,4 +48,31 @@ export const onNotionConnect = async (
       });
     }
   }
+};
+
+export const getNotionConnection = async () => {
+  const user = await currentUser();
+
+  if (user) {
+    const connection = await db.notion.findFirst({
+      where: {
+        userId: user.id,
+      },
+    });
+    if (connection) {
+      return connection;
+    }
+  }
+};
+
+export const getNotionDatabase = async (
+  databaseId: string,
+  accessToken: string
+) => {
+  const notion = new Client({
+    auth: accessToken,
+  });
+
+  const response = await notion.databases.retrieve({ database_id: databaseId });
+  return response;
 };

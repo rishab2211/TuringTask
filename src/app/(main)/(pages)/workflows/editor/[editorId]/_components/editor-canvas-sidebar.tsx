@@ -15,7 +15,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import EditorCanvasIconHelper from "./editor-canvas-card-icon-helper";
-import { onDragStart } from "@/lib/editor-utils";
+import { onConnection, onDragStart } from "@/lib/editor-utils";
 import { useEffect, useState } from "react";
 import {
   Accordion,
@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/accordion";
 import RenderConnectionAccordian from "./render-connection-accordian";
 import RenderOutputAccordian from "./render-output-accordian";
+import { useTuringStore } from "@/store";
 
 type Props = {
   nodes: EditorNodeType[];
@@ -34,6 +35,13 @@ const EditorCanvasSidebar = ({ nodes }: Props) => {
   const { state } = useEditor();
 
   const { nodeConnection } = useNodeConnections();
+  const {googleFile, setSlackChannels} = useTuringStore();
+
+  useEffect(()=>{
+    if(state){
+      onConnection(nodeConnection,googleFile,state)
+    }
+  },[state])
 
   return (
     <div className="text-white flex justify-center items-center">
