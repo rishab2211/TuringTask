@@ -32,8 +32,8 @@ const GoogleDriveFiles = (props: Props) => {
   };
 
   useEffect(() => {
-    isLoading;
-  }, [isListening]);
+    onListener();
+  },[]);
   return (
     <div className="flex flex-col gap-3 pb-6">
       {isListening ? (

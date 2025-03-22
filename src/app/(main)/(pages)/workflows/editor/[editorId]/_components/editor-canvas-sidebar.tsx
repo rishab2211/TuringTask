@@ -79,7 +79,7 @@ const EditorCanvasSidebar = ({ nodes }: Props) => {
           </div>
 
           <Accordion type="multiple">
-            <AccordionItem value="item-1">
+            <AccordionItem value="settings">
               <AccordionTrigger>Account</AccordionTrigger>
               <AccordionContent>
                 {CONNECTIONS.map((connection, idx) => (
@@ -94,7 +94,7 @@ const EditorCanvasSidebar = ({ nodes }: Props) => {
 
             <AccordionItem value="Expected Output">
               <AccordionTrigger>Action</AccordionTrigger>
-              <AccordionContent>
+              <AccordionContent className="flex flex-col items-center">
                 <RenderOutputAccordian
                 state={state}
                 nodeConnection={nodeConnection}

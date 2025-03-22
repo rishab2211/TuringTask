@@ -16,6 +16,7 @@ import { EditorState } from "@/provider/editor-provider";
 import GoogleFileDetails from "./google-file-details";
 import GoogleDriveFiles from "./google-drive-files";
 import ActionButton from "./action-button";
+import { onContentChange } from "@/lib/editor-utils";
 
 export interface Option {
   value: string;
@@ -55,7 +56,7 @@ const ContentBasedOnTitle = ({
   if (!nodeConnectionType) return <p>Not connected</p>;
 
   const isConnected =
-    title === "Google Drive"
+    title === "Google drive"
       ? !nodeConnection.isLoading
       : !!nodeConnectionType[
           `${
@@ -86,10 +87,10 @@ const ContentBasedOnTitle = ({
           <Input
             type="text"
             value={nodeConnectionType.content}
-            // onChange={(event) => onContentChange(nodeConnection, title, event)}
+            onChange={(event) => onContentChange(nodeConnection, title, event)}
           />
 
-          {JSON.stringify(file) !== "{}" && title !== "Google Drive" && (
+          {JSON.stringify(file) !== "{}" && title !== "Google drive" && (
             <Card className="w-full">
               <CardContent className="px-2 py-3">
                 <div className="flex flex-col gap-4">
@@ -105,7 +106,7 @@ const ContentBasedOnTitle = ({
               </CardContent>
             </Card>
           )}
-          {title === "Google Drive" && <GoogleDriveFiles />}
+          {title === "Google drive" && <GoogleDriveFiles />}
           <ActionButton
             currentService={title}
             nodeConnection={nodeConnection}

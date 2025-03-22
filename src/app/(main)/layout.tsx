@@ -6,7 +6,7 @@ type Props = { children: ReactNode };
 
 const Layout = (props: Props) => {
   return (
-    <div className=" flex overflow-hidden h-screen ">
+    <div className=" flex overflow-hidden h-screen p-4 ">
       <MenuOptions />
       <div className=" w-full ">
         <Infobar/>

@@ -22,19 +22,16 @@ const ConnectionCard: React.FC<Props> = ({
   callback,
   connected,
 }) => {
-  useEffect(() => {
-    console.log("Connected : ", connected);
-  }, [connected]);
 
   return (
-    <div className="border m-3  p-6 w-max-[450px]  rounded-md shadow-md flex flex-col items-center">
+    <div className="border m-3  p-4 w-max-[450px]  rounded-md shadow-md flex flex-col items-center">
       <Image src={icon as string} alt={title} width={40} height={40} />
       <h3 className="text-lg font-semibold">{title}</h3>
       <p className="text-sm text-muted-foreground">{description}</p>
 
       <div className="flex flex-col items-center gap-2 p-4">
         {connected[type] ? (
-          <div className="border-bg-primary rounded-lg border-2 px-3 py-2 font-bold text-white">
+          <div className="border-bg-primary rounded-lg border-2 px-3 py-2 font-bold hover:-translate-y-0.5 hover:-translate-x-0.5 transition-all text-white">
             Connected
           </div>
         ) : (
